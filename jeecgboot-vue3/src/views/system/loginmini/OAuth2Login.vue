@@ -94,7 +94,7 @@
    */
   function dingdingLogin() {
     //先获取钉钉的企业id，如果没有配置 还是走原来的逻辑，走原来的逻辑 需要判断存不存在token，存在token直接去首页
-    let tenantId = getAuthCache(OAUTH2_THIRD_LOGIN_TENANT_ID) || 0;
+    let tenantId = getAuthCache(OAUTH2_THIRD_LOGIN_TENANT_ID) || 1000;
     let url = `/sys/thirdLogin/get/corpId/clientId?tenantId=${tenantId}`;
     //update-begin---author:wangshuai---date:2024-12-09---for:不要使用getAction online里面的，要用defHttp---
     defHttp.get({ url:url },{ isTransformResponse: false }).then((res) => {

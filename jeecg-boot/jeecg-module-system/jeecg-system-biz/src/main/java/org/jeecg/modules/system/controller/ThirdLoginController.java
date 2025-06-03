@@ -326,7 +326,7 @@ public class ThirdLoginController {
 	@ResponseBody
 	@GetMapping("/oauth2/{source}/login")
 	public String oauth2LoginCallback(@PathVariable("source") String source, @RequestParam("state") String state, HttpServletRequest request, HttpServletResponse response,
-									  @RequestParam(value = "tenantId",required = false,defaultValue = "0") String tenantId) throws Exception {
+									  @RequestParam(value = "tenantId",required = false,defaultValue = "1000") String tenantId) throws Exception {
 		String url;
 		//应用id为空，说明没有配置lowAppId
 		if(oConvertUtils.isEmpty(tenantId)){
@@ -581,6 +581,7 @@ public class ThirdLoginController {
 									 @RequestParam("state") String state,
 									 @RequestParam(name = "tenantId",defaultValue = "0") String tenantId,
 									 HttpServletResponse response) {
+		tenantId=tenantId.equals("0")?"1000":tenantId;
 		SysUser loginUser = thirdAppDingtalkService.oauthDingDingLogin(authCode,Integer.valueOf(tenantId));
 		try {
 			String redirect = "";
